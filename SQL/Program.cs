@@ -47,6 +47,7 @@ namespace SQL
                     }
                     
                 }
+                Console.WriteLine("Я валера");
             }
 
         }
