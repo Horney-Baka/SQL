@@ -12,6 +12,7 @@ namespace SQL
     {
         static  void Main(string[] args)
         {
+            string[,] CPU = new string[22, 2]; 
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["SQL"].ConnectionString);
             if (sqlConnection.State == ConnectionState.Open)
             {
@@ -28,25 +29,23 @@ namespace SQL
             if(reader.HasRows)
             {
                 string columnName1 = reader.GetName(0);
-                string columnName2 = reader.GetName(1);
-                string columnName3 = reader.GetName(2);
-                string columnName4 = reader.GetName(3);
-                string columnName5 = reader.GetName(4);
-                string columnName6 = reader.GetName(5);
+                string columnName4 = reader.GetName(2);
+                
 
+                
 
-                Console.WriteLine($"{columnName1}\t{columnName2}\t{columnName3}\t{columnName4}\t{columnName5}\t{columnName6}");
+                Console.WriteLine($"{columnName1}\t\t{columnName4}");
 
-                while (reader.Read())
+                for(int i = 0; reader.Read();i++)
                 {
-                    object ID_CPU = reader.GetValue(0);
-                    object ID_Manufacturer = reader.GetValue(1);
-                    object Name = reader.GetValue(2);
-                    object Number_of_Cores = reader.GetValue(3);
-                    object Core_Frequency = reader.GetValue(4);
-                    object Number_of_Threads = reader.GetValue(5);
-
-                    Console.WriteLine($"{ID_CPU} \t {ID_Manufacturer} \t {Name} \t {Number_of_Cores} \t {Core_Frequency} \t {Number_of_Threads}");
+                    
+                    for(int j = 0; j<1;j++)
+                    {
+                        CPU[i, j] = Convert.ToString (reader.GetInt32(0));
+                        CPU[i, j+1] = reader.GetString(2);
+                        Console.WriteLine(CPU[i, j] + "\t\t" + CPU[i, j + 1]);
+                    }
+                    
                 }
             }
 
